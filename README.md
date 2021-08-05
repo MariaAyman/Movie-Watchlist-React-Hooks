@@ -1,3 +1,22 @@
+#Movie Watchlist - React Hooks
+
+A Movie App where you can present your favorite movies or TV shows using React Hooks.
+
+The following components were created:
+  - MovieCard
+  - MovieList
+  - Filter ( title, rate)
+
+Every movie has the following attributes: 
+  - title 
+  - description 
+  - posterURL 
+  - rating
+
+The user should be:
+  - Able to add a new movie.
+  - Filter the movies with title/rating.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
