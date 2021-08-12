@@ -15,7 +15,7 @@ Every movie has the following attributes:
 
 The user should be:
   - Able to add a new movie.
-  - Filter the movies with title/rating.
+  - Filter the movies with title or rating or both.
 
 # Getting Started with Create React App
 
