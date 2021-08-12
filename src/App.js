@@ -54,17 +54,24 @@ const initMovies = [
   }
 ];
 
-function App() {
+const App = () => {
   const [movies, setMovies] = useState(initMovies);
-  //const [movieName, setName] = useState('');
 
-  const addMovies = (movieTitle, movieDesc, moviePoster) =>{
-    setMovies(m => [...m, {
+  const addMovies = (movieTitle, movieDesc, moviePoster, movieRating) => {
+    // setMovies(m => [...m, {
+    //   title: movieTitle,
+    //   description: movieDesc,
+    //   posterUrl: moviePoster
+    // }]);  
+
+    initMovies.push({
       title: movieTitle,
       description: movieDesc,
-      posterUrl: moviePoster
-    }]);
-    //console.log(movies);
+      posterUrl: moviePoster,
+      rating: movieRating
+    });
+    setMovies(initMovies);
+    console.log("added: ", movies, initMovies);
   }
 
   const resetState = () => {
@@ -73,17 +80,23 @@ function App() {
 
   const filterRate = (rate) => {
     //filter movies based on rate value
-    setMovies(movies.filter(movie => movie.rating && (parseInt((movie.rating.split('/'))[0]) >= rate)));
+    setMovies(initMovies.filter(movie => movie.rating && (parseInt((movie.rating.split('/'))[0]) >= rate)));
   }
 
   const filterSearch = (movieName) => {
     //filter movies based on title
-    setMovies(movies.filter(movie => (movie.title.toLowerCase().includes(movieName.toLowerCase()))));
+    setMovies(initMovies.filter(movie => (movie.title.toLowerCase().includes(movieName.toLowerCase()))));
+  }
+
+  const filter = (rate, name) => {
+    const filteredArr = initMovies.filter(m => ( (parseInt((m.rating.split('/'))[0]) >= rate)  ) && ( (m.title.toLowerCase().includes(name.toLowerCase()))  ));
+    console.log(filteredArr);
+    setMovies(filteredArr);
   }
 
   return (
     <div className="container">
-      <Filter movies={movies} initMovies={initMovies} filterRate={filterRate} filterSearch={filterSearch} reset={resetState}/>
+      <Filter movies={movies} initMovies={initMovies} filter={filter} filterRate={filterRate} filterSearch={filterSearch} reset={resetState}/>
       <MovieList movies={movies} />
       <AddMovie movies={movies} addMovies={addMovies}/>
     </div>
