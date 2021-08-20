@@ -83,11 +83,6 @@ const App = () => {
     setMovies(initMovies.filter(movie => movie.rating && (parseInt((movie.rating.split('/'))[0]) >= rate)));
   }
 
-  const filterSearch = (movieName) => {
-    //filter movies based on title
-    setMovies(initMovies.filter(movie => (movie.title.toLowerCase().includes(movieName.toLowerCase()))));
-  }
-
   const filter = (rate, name) => {
     const filteredArr = initMovies.filter(m => ( (parseInt((m.rating.split('/'))[0]) >= rate)  ) && ( (m.title.toLowerCase().includes(name.toLowerCase()))  ));
     console.log(filteredArr);
@@ -96,7 +91,7 @@ const App = () => {
 
   return (
     <div className="container">
-      <Filter movies={movies} initMovies={initMovies} filter={filter} filterRate={filterRate} filterSearch={filterSearch} reset={resetState}/>
+      <Filter movies={movies} initMovies={initMovies} filter={filter} filterRate={filterRate} reset={resetState}/>
       <MovieList movies={movies} />
       <AddMovie movies={movies} addMovies={addMovies}/>
     </div>
