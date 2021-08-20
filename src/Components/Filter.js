@@ -4,24 +4,18 @@ const Filter = (props) => {
     const [filterRate, setRate] = useState();
     const [movieName, setName] = useState();
 
-    useEffect(() => {
-        if(filterRate != null){
-            props.filterRate(filterRate);
-        }
-    },[filterRate]);
-
     const handleFilter = () => {
-        //props.filterRate(filterRate);
-        if(movieName !== undefined){
+        if(movieName !== ""){
             props.filter(filterRate, movieName);
         }
-    }
-
-    const handleSearch = () =>{
-        props.filterSearch(movieName);
+        else{
+            props.filterRate(filterRate);
+        }
     }
 
     const handleReset = () => {
+        setRate(0);
+        setName("");
         props.reset();
     }
 
@@ -37,7 +31,6 @@ const Filter = (props) => {
                 <div className="col m-4">
                     <label for="customRange2" className="form-label">Search Movie by name:</label>
                     <input type="text" className="form-control" id="exampleFormControlInput4" placeholder="Ex: The House of Gaunt" value={movieName} onChange={(e) => setName(e.target.value)} style={{width: 200}}/>
-                    <button type="button" className="btn btn-dark mt-4" onClick={handleSearch}>Search</button>
                 </div>
                 <button type="button" className="btn btn-dark align-self-center" onClick={handleReset} style={{width: 200, height: 50}}>Reset</button>
             </div>
